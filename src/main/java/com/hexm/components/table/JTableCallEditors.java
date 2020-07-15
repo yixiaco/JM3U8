@@ -35,6 +35,7 @@ public class JTableCallEditors {
         public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
             System.out.println("下载进度：" + value);
             setValue(((Double) value).intValue());
+            setString(String.format("%.2f%%", (Double) value));
             return this;
         }
     }
