@@ -55,10 +55,12 @@ public class DownloadingTableModel extends DefaultTableModel {
                     if (m3u8s.get(i).getId().equals(m3u8.getId())) {
                         ((DownloadCompletedTableModel) DownloadCompletedModule.table.getModel()).addRow(m3u8);
                         removeRow(i);
-                        //重新渲染列
-                        table.rendererColumn();
                         break;
                     }
+                }
+                fireTableRowsUpdated(0, m3u8s.size());
+                for (int i = 0; i < m3u8s.size(); i++) {
+                    fireTableCellUpdated(i, DownloadingTable.OPERATING);
                 }
             } else if (e == M3u8Event.CHANGE) {
                 for (int i = 0; i < m3u8s.size(); i++) {
